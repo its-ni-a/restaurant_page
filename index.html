@@ -9,10 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>Bella Cucina - Authentic Italian Restaurant</title>
-    <style>
-        
-    </style>
+    <title>Bella Cucina</title>
 </head>
 <body>
     <!-- Header & Navigation -->
@@ -24,6 +21,12 @@
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
             </ul>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -32,6 +35,29 @@
             </div>
         </nav>
     </header>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">Your cart is empty</div>
+            </div>
+            <div class="cart-footer" id="cartFooter" style="display: none;">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span class="cart-total-price" id="cartTotal">$0.00</span>
+                </div>
+                <div class="cart-actions">
+                    <button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+                    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -51,20 +77,32 @@
                     <div class="card-body">
                         <h3 class="card-title">Appetizers</h3>
                         <div class="menu-item">
-                            <span class="item-name">Bruschetta al Pomodoro</span>
-                            <span class="item-price">$8.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Bruschetta al Pomodoro</div>
+                                <div class="item-price">$8.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Bruschetta al Pomodoro', 8.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Calamari Fritti</span>
-                            <span class="item-price">$12.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Calamari Fritti</div>
+                                <div class="item-price">$12.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Calamari Fritti', 12.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Caprese Salad</span>
-                            <span class="item-price">$10.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Caprese Salad</div>
+                                <div class="item-price">$10.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Caprese Salad', 10.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Arancini</span>
-                            <span class="item-price">$9.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Arancini</div>
+                                <div class="item-price">$9.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Arancini', 9.99)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -75,20 +113,32 @@
                     <div class="card-body">
                         <h3 class="card-title">Main Courses</h3>
                         <div class="menu-item">
-                            <span class="item-name">Spaghetti Carbonara</span>
-                            <span class="item-price">$16.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Spaghetti Carbonara</div>
+                                <div class="item-price">$16.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Spaghetti Carbonara', 16.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Lasagna Bolognese</span>
-                            <span class="item-price">$18.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Lasagna Bolognese</div>
+                                <div class="item-price">$18.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Lasagna Bolognese', 18.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Chicken Parmigiana</span>
-                            <span class="item-price">$19.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Chicken Parmigiana</div>
+                                <div class="item-price">$19.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Chicken Parmigiana', 19.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Risotto ai Funghi</span>
-                            <span class="item-price">$17.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Risotto ai Funghi</div>
+                                <div class="item-price">$17.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Risotto ai Funghi', 17.99)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -99,20 +149,32 @@
                     <div class="card-body">
                         <h3 class="card-title">Desserts</h3>
                         <div class="menu-item">
-                            <span class="item-name">Tiramisu</span>
-                            <span class="item-price">$7.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Tiramisu</div>
+                                <div class="item-price">$7.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Tiramisu', 7.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Panna Cotta</span>
-                            <span class="item-price">$6.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Panna Cotta</div>
+                                <div class="item-price">$6.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Panna Cotta', 6.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Cannoli Siciliani</span>
-                            <span class="item-price">$8.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Cannoli Siciliani</div>
+                                <div class="item-price">$8.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Cannoli Siciliani', 8.99)">Add</button>
                         </div>
                         <div class="menu-item">
-                            <span class="item-name">Gelato (3 scoops)</span>
-                            <span class="item-price">$6.99</span>
+                            <div class="menu-item-info">
+                                <div class="item-name">Gelato (3 scoops)</div>
+                                <div class="item-price">$6.99</div>
+                            </div>
+                            <button class="add-to-cart-btn" onclick="addToCart('Gelato (3 scoops)', 6.99)">Add</button>
                         </div>
                     </div>
                 </div>
@@ -127,16 +189,22 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900">
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900" alt="Delicious pasta">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900">
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900" alt="Fresh bruschetta">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900">
-                    </div>
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900" alt="Gourmet pizza">
                     </div>
                     <div class="carousel-item">
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=900" alt="Restaurant interior">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=900" alt="Elegant plating">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=900" alt="Fine dining">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -189,15 +257,14 @@
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Facebook">Facebook</a>
                         <a href="#" aria-label="Instagram">Insta</a>
                         <a href="#" aria-label="Twitter">Twitter</a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Business Hours</h3>
-                    <p>Monday - Thursday: 11:00 AM - 10:00 PM</p>
-                    <p>Friday - Saturday: 11:00 AM - 11:00 PM</p>
+                    <p>Monday - Saturday: 11:00 AM - 10:00 PM</p>
                     <p>Sunday: 12:00 PM - 9:00 PM</p>
                 </div>
                 <div class="footer-section">
@@ -210,6 +277,6 @@
         </div>
     </footer>
 
-
-    </body>
+    <script src="cart.js"></script>
+</body>
 </html>
