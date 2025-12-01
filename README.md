@@ -2,16 +2,6 @@
 
 A fully functional Italian restaurant website converted to React with shopping cart functionality.
 
-## Features
-
-- 🍝 Interactive menu with add to cart functionality
-- 🛒 Shopping cart with quantity management
-- 📱 Fully responsive design (mobile, tablet, desktop)
-- 🖼️ Image gallery carousel
-- 📍 Contact form and embedded map
-- 💾 Cart persistence using localStorage
-- 🔔 Add-to-cart notifications
-
 ## Project Structure
 
 ```
@@ -69,13 +59,3 @@ This creates an optimized production build in the `build/` folder.
 - **CartModal**: Shopping cart overlay
 - **Notification**: Toast notifications for cart actions
 
-## Technologies Used
-
-- React 18
-- CSS3 (Grid, Flexbox)
-- localStorage for cart persistence
-- Responsive design
-
-## License
-
-MIT
